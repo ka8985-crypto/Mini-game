@@ -1,1 +1,75 @@
 
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Money Clicker</title>
+    <style>
+        body {
+            background: #111;
+            color: white;
+            text-align: center;
+            font-family: Arial;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            margin: 10px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .click { background: gold; }
+        .upgrade { background: green; color: white; }
+        .donate { background: red; color: white; }
+    </style>
+</head>
+<body>
+
+<h1>💰 Money Clicker</h1>
+<h2 id="coins">Монеты: 0</h2>
+<h3 id="level">Уровень: 1</h3>
+
+<button class="click" onclick="clickCoin()">Клик</button>
+<br>
+<button class="upgrade" onclick="buyUpgrade()">Улучшение (100)</button>
+<br>
+<button class="donate" onclick="buyVIP()">Купить VIP 💎</button>
+
+<script>
+let coins = 0;
+let level = 1;
+let power = 1;
+let vip = false;
+
+function clickCoin() {
+    coins += power;
+    update();
+}
+
+function buyUpgrade() {
+    if (coins >= 100) {
+        coins -= 100;
+        power += 1;
+        level += 1;
+        update();
+    }
+}
+
+function buyVIP() {
+    if (!vip) {
+        vip = true;
+        power += 5;
+        alert("VIP активирован! +5 к силе 💎");
+    }
+}
+
+function update() {
+    document.getElementById("coins").innerText = "Монеты: " + coins;
+    document.getElementById("level").innerText = "Уровень: " + level;
+}
+</script>
+
+</body>
+</html>
